@@ -7,16 +7,17 @@ This collection is inspired by [Provable Refactorings](https://github.com/digdee
 
 ## Techniques and examples
 * Formal Specification driven
-  * Dafny
+  * Dafny - [Gilded Rose](https://github.com/raymyers/gilded-rose-dafny), [Video](https://youtu.be/XNIdKXQ56o4)
 * Symbolic Execution
-  * C + Klee
+  * C + Klee - [Gilded Rose](https://github.com/raymyers/gilded-rose-c-symbolic-execution), [Video](https://youtu.be/_7RXQE-pCMo)
 * Functional implementation as spec
-  * Dafny
+  * Dafny - Linked Lists [Video 1]([https://youtu.be/dUoyPxSfKHU](https://youtu.be/zDu4SA5T4SI)), [Video 2](https://youtu.be/dUoyPxSfKHU) 
   * Coq + Gallina
 * Proving program equivalence of an embedded language
-  * Coq + Imp
+  * Coq + Imp - [Programming Language Foundations](https://softwarefoundations.cis.upenn.edu/plf-current/Equiv.html)
 * Proving equivelance of a program transformation
-  * CompCert C Compiler
+  * [CompCert](https://compcert.org/compcert-C.html) C Compiler written in Coq, extracted to OCaml
+  * [Refinity](https://www.dominic-steinhoefel.de/talk/how-to-prove-the-correctness-of-refactoring-rules/how-to-prove-the-correctness-of-refactoring-rules.pdf) - Proofs for Java Refactoring built on JML / Key
 
 ## Cool Papers
 [Simple formally verified compiler
