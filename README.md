@@ -1,7 +1,7 @@
 # Verified Refactoring
 > Exploring techniques for code refactoring with formal verification.
 
-Refactoring is changing the structure of a program without changing it's behavior. Traditional refactoring tools help us do this consistently by performing syntax transformations. By using Formal Methods to reason about the semantics of the code, we can open up more posibilities!
+Refactoring is changing the structure of a program without changing the behavior. Traditional refactoring tools help us achieve this using syntax transformations. By using Formal Methods to reason about the semantics of the code, we can open up more posibilities!
 
 This collection is inspired by [Provable Refactorings](https://github.com/digdeeproots/provable-refactorings) by Arlo Belshee, with the addition of mechanically verified proof rather than informal arguments to ensure behavior is unchanged.
 
