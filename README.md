@@ -8,6 +8,7 @@ This collection is inspired by [Provable Refactorings](https://github.com/digdee
 ## Techniques and examples
 * Formal Specification driven
   * Dafny - [Gilded Rose](https://github.com/raymyers/gilded-rose-dafny), [Video](https://youtu.be/XNIdKXQ56o4)
+  * Dafny - [Proving the correctness of AWS authorization](https://www.youtube.com/watch?v=oshxAJGrwMU)
 * Symbolic Execution
   * C + Klee - [Gilded Rose](https://github.com/raymyers/gilded-rose-c-symbolic-execution), [Video](https://youtu.be/_7RXQE-pCMo)
 * Functional implementation as spec
