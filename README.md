@@ -19,6 +19,7 @@ This collection is inspired by [Provable Refactorings](https://github.com/digdee
 * Proving equivelance of a program transformation
   * [CompCert](https://compcert.org/compcert-C.html) C Compiler written in Coq, extracted to OCaml
   * [Refinity](https://www.dominic-steinhoefel.de/talk/how-to-prove-the-correctness-of-refactoring-rules/how-to-prove-the-correctness-of-refactoring-rules.pdf) - Proofs for Java Refactoring built on JML / Key
+  * [Equivalence by Canonicalization for Synthesis-Backed Refactoring](https://www.youtube.com/watch?v=sK_C0tEYT84) - Examples in Elm and Python/NumPy
 
 ## Cool Papers
 [Simple formally verified compiler
