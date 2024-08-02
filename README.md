@@ -19,13 +19,18 @@ This collection is inspired by [Provable Refactorings](https://github.com/digdee
 * Proving equivelance of a program transformation
   * [CompCert](https://compcert.org/compcert-C.html) C Compiler written in Coq, extracted to OCaml
   * [Refinity](https://www.dominic-steinhoefel.de/talk/how-to-prove-the-correctness-of-refactoring-rules/how-to-prove-the-correctness-of-refactoring-rules.pdf) - Proofs for Java Refactoring built on JML / Key
-  * [Equivalence by Canonicalization for Synthesis-Backed Refactoring](https://www.youtube.com/watch?v=sK_C0tEYT84) - Examples in Elm and Python/NumPy
+
+## Related Concepts
+
+* Relational Verification
+* Differential Analysis
+* Program Equivalence
+* Program Synthesis
+* Symbolic Execution
 
 ## Cool Papers
-[Simple formally verified compiler
+* [Simple formally verified compiler
 in Lean](https://uu.diva-portal.org/smash/get/diva2:1613286/FULLTEXT01.pdf) - 2021 - Leo Okawa Ericson
-
-[Kayak: Safe Semantic Refactoring to Java Streams](https://arxiv.org/pdf/1712.07388) - 2017 - David, Kesseli, Kroening]
-
-[Abstract Execution: Automatically Proving Infinitely Many Programs](https://www.dominic-steinhoefel.de/publication/steinhoefel-20-2) - 2020 Steinhoefel PhD thesis. [Slides on Refinity](https://www.dominic-steinhoefel.de/talk/how-to-prove-the-correctness-of-refactoring-rules/how-to-prove-the-correctness-of-refactoring-rules.pdf)
-
+* [Kayak: Safe Semantic Refactoring to Java Streams](https://arxiv.org/pdf/1712.07388) - 2017 - David, Kesseli, Kroening]
+* [Abstract Execution: Automatically Proving Infinitely Many Programs](https://www.dominic-steinhoefel.de/publication/steinhoefel-20-2) - 2020 Steinhoefel PhD thesis. [Slides on Refinity](https://www.dominic-steinhoefel.de/talk/how-to-prove-the-correctness-of-refactoring-rules/how-to-prove-the-correctness-of-refactoring-rules.pdf)
+* [Equivalence by Canonicalization for Synthesis-Backed Refactoring](https://www.youtube.com/watch?v=sK_C0tEYT84) - Examples in Elm and Python/NumPy, [cobbler repo](https://github.com/justinlubin/cobbler)
