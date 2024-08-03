@@ -1,0 +1,11 @@
+*.class
+.settings
+.preferences
+.classpath
+.project
+target
+.idea
+*.iml
+
+*.received.*
+.DS_Store
