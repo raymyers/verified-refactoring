@@ -1,0 +1,257 @@
+# Initial:
+public class TripService {
+
+    public List<Trip> getTripsByUser(User user) throws UserNotLoggedInException {
+        List<Trip> tripList = new ArrayList<Trip>();
+        User loggedUser = UserSession.getInstance().getLoggedUser();
+        boolean isFriend = false;
+        if (loggedUser != null) {
+            for (User friend : user.getFriends()) {
+                if (friend.equals(loggedUser)) {
+                    isFriend = true;
+                    break;
+                }
+            }
+            if (isFriend) {
+                tripList = TripDAO.findTripsByUser(user);
+            }
+            return tripList;
+        } else {
+            throw new UserNotLoggedInException();
+        }
+    }
+}
+
+# Extract variable 'session':
+public class TripService {
+
+    public List<Trip> getTripsByUser(User user) throws UserNotLoggedInException {
+        var session = UserSession.getInstance();
+        List<Trip> tripList = new ArrayList<Trip>();
+        User loggedUser = session.getLoggedUser();
+        boolean isFriend = false;
+        if (loggedUser != null) {
+            for (User friend : user.getFriends()) {
+                if (friend.equals(loggedUser)) {
+                    isFriend = true;
+                    break;
+                }
+            }
+            if (isFriend) {
+                tripList = TripDAO.findTripsByUser(user);
+            }
+            return tripList;
+        } else {
+            throw new UserNotLoggedInException();
+        }
+    }
+}
+
+# Extract variable 'tripDao' and convert TripDAO to constructor:
+public class TripService {
+
+    public List<Trip> getTripsByUser(User user) throws UserNotLoggedInException {
+        var tripDao = new TripDAO();
+        var session = UserSession.getInstance();
+        List<Trip> tripList = new ArrayList<Trip>();
+        User loggedUser = session.getLoggedUser();
+        boolean isFriend = false;
+        if (loggedUser != null) {
+            for (User friend : user.getFriends()) {
+                if (friend.equals(loggedUser)) {
+                    isFriend = true;
+                    break;
+                }
+            }
+            if (isFriend) {
+                tripList = tripDao.findTripsByUser(user);
+            }
+            return tripList;
+        } else {
+            throw new UserNotLoggedInException();
+        }
+    }
+}
+
+# Extract method 'getTripsByUserInner':
+public class TripService {
+
+    public List<Trip> getTripsByUser(User user) throws UserNotLoggedInException {
+        var tripDao = new TripDAO();
+        var session = UserSession.getInstance();
+        return getTripsByUserInner(session, user, tripDao);
+    }
+
+    List<Trip> getTripsByUserInner(UserSession session, User user, TripDAO tripDao) {
+        List<Trip> tripList = new ArrayList<Trip>();
+        User loggedUser = session.getLoggedUser();
+        boolean isFriend = false;
+        if (loggedUser != null) {
+            for (User friend : user.getFriends()) {
+                if (friend.equals(loggedUser)) {
+                    isFriend = true;
+                    break;
+                }
+            }
+            if (isFriend) {
+                tripList = tripDao.findTripsByUser(user);
+            }
+            return tripList;
+        } else {
+            throw new UserNotLoggedInException();
+        }
+    }
+}
+
+# Invert if:
+public class TripService {
+
+    public List<Trip> getTripsByUser(User user) throws UserNotLoggedInException {
+        var tripDao = new TripDAO();
+        var session = UserSession.getInstance();
+        return getTripsByUserInner(session, user, tripDao);
+    }
+
+    List<Trip> getTripsByUserInner(UserSession session, User user, TripDAO tripDao) {
+        List<Trip> tripList = new ArrayList<Trip>();
+        User loggedUser = session.getLoggedUser();
+        boolean isFriend = false;
+        if (!loggedUser != null) {
+            throw new UserNotLoggedInException();
+        } else {
+            for (User friend : user.getFriends()) {
+                if (friend.equals(loggedUser)) {
+                    isFriend = true;
+                    break;
+                }
+            }
+            if (isFriend) {
+                tripList = tripDao.findTripsByUser(user);
+            }
+            return tripList;
+        }
+    }
+}
+
+# Breakout else:
+public class TripService {
+
+    public List<Trip> getTripsByUser(User user) throws UserNotLoggedInException {
+        var tripDao = new TripDAO();
+        var session = UserSession.getInstance();
+        return getTripsByUserInner(session, user, tripDao);
+    }
+
+    List<Trip> getTripsByUserInner(UserSession session, User user, TripDAO tripDao) {
+        List<Trip> tripList = new ArrayList<Trip>();
+        User loggedUser = session.getLoggedUser();
+        boolean isFriend = false;
+        if (!loggedUser != null) {
+            throw new UserNotLoggedInException();
+        }
+        {
+            for (User friend : user.getFriends()) {
+                if (friend.equals(loggedUser)) {
+                    isFriend = true;
+                    break;
+                }
+            }
+            if (isFriend) {
+                tripList = tripDao.findTripsByUser(user);
+            }
+            return tripList;
+        }
+    }
+}
+
+# Flatten blocks:
+public class TripService {
+
+    public List<Trip> getTripsByUser(User user) throws UserNotLoggedInException {
+        var tripDao = new TripDAO();
+        var session = UserSession.getInstance();
+        return getTripsByUserInner(session, user, tripDao);
+    }
+
+    List<Trip> getTripsByUserInner(UserSession session, User user, TripDAO tripDao) {
+        List<Trip> tripList = new ArrayList<Trip>();
+        User loggedUser = session.getLoggedUser();
+        boolean isFriend = false;
+        if (!loggedUser != null) {
+            throw new UserNotLoggedInException();
+        }
+        for (User friend : user.getFriends()) {
+            if (friend.equals(loggedUser)) {
+                isFriend = true;
+                break;
+            }
+        }
+        if (isFriend) {
+            tripList = tripDao.findTripsByUser(user);
+        }
+        return tripList;
+    }
+}
+
+# Push isFriend down:
+public class TripService {
+
+    public List<Trip> getTripsByUser(User user) throws UserNotLoggedInException {
+        var tripDao = new TripDAO();
+        var session = UserSession.getInstance();
+        return getTripsByUserInner(session, user, tripDao);
+    }
+
+    List<Trip> getTripsByUserInner(UserSession session, User user, TripDAO tripDao) {
+        List<Trip> tripList = new ArrayList<Trip>();
+        User loggedUser = session.getLoggedUser();
+        if (!loggedUser != null) {
+            throw new UserNotLoggedInException();
+        }
+        boolean isFriend = false;
+        for (User friend : user.getFriends()) {
+            if (friend.equals(loggedUser)) {
+                isFriend = true;
+                break;
+            }
+        }
+        if (isFriend) {
+            tripList = tripDao.findTripsByUser(user);
+        }
+        return tripList;
+    }
+}
+
+# Extract method 'isFriendOf':
+public class TripService {
+
+    public List<Trip> getTripsByUser(User user) throws UserNotLoggedInException {
+        var tripDao = new TripDAO();
+        var session = UserSession.getInstance();
+        return getTripsByUserInner(session, user, tripDao);
+    }
+
+    List<Trip> getTripsByUserInner(UserSession session, User user, TripDAO tripDao) {
+        List<Trip> tripList = new ArrayList<Trip>();
+        User loggedUser = session.getLoggedUser();
+        if (!loggedUser != null) {
+            throw new UserNotLoggedInException();
+        }
+        boolean isFriend = isFriendOf(user, loggedUser);
+        if (isFriend) {
+            tripList = tripDao.findTripsByUser(user);
+        }
+        return tripList;
+    }
+
+    boolean isFriendOf(User user, User loggedUser) {
+        boolean isFriend = false;
+        for (User friend : user.getFriends()) {
+            if (friend.equals(loggedUser)) {
+                isFriend = true;
+                break;
+            }
+        }
+        return isFriend;
+    }
+}

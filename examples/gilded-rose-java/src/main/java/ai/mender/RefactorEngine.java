@@ -133,7 +133,7 @@ public class RefactorEngine {
         });
     }
 
-    static void collapseNestedBlocks(MethodDeclaration method) {
+    public static void collapseNestedBlocks(MethodDeclaration method) {
         method.findAll(BlockStmt.class).forEach(n -> {
             // Collapse block statements directly within other block statements
             Optional<Node> parentNode = n.getParentNode();

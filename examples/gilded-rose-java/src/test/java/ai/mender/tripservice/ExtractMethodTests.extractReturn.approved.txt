@@ -1,0 +1,10 @@
+public class C {
+
+    public boolean a() throws UserNotLoggedInException {
+        return extracted();
+    }
+
+    boolean extracted() {
+        return true;
+    }
+}
