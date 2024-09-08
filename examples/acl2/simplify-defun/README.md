@@ -4,6 +4,10 @@ This code demonstrates the use of [simplify-defun](https://www.cs.utexas.edu/~mo
 
 See `gilded-rose-simplify.lisp` for the full code, and for output see `gilded-rose-simplify-result.lisp`.
 
+## Setup
+
+ACL2 must be installed and the Kestral book must be certified.
+
 ## Sample
 
 Starting with this original code:
@@ -54,6 +58,8 @@ Starting with this original code:
 We can create a specialized version for "Aged Brie" using `simplify-defun`
 
 ```lisp
+(include-book "kestrel/apt/top" :dir :system)
+
 (simplify-defun update-item :new-name update-brie-sa :assumptions ((equal name "Aged Brie")))
 ```
 
