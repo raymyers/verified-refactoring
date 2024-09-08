@@ -1,0 +1,316 @@
+Rename in output/1-update-normal.lisp: "update-item"->"update-normal"
+  changed: (defun update-item :[body]) => (defun update-normal :[body])
+Specializing output/1-update-normal.lisp for name "..normal.."
+  changed: (equal name :[a]) => nil
+  changed: (not nil) => t
+  changed: (and t :[a]) => :[a]
+  changed: (if t :[a] :[b]) => :[a]
+  changed: (if nil :[a] :[b]) => :[b]
+  changed: (let ((:[a] :[a]) (:[b] :[c])) :[body]) => (let ((:[b] :[c])) :[body])
+Specializing output/1-update-normal.lisp for name "..normal.."
+  changed: (if t :[a] :[b]) => :[a]
+Specializing output/1-update-normal.lisp for name "..normal.."
+  changed: (if t :[a] :[b]) => :[a]
+
+Rename in output/1-update-brie.lisp: "update-item"->"update-brie"
+  changed: (defun update-item :[body]) => (defun update-brie :[body])
+Specializing output/1-update-brie.lisp for name "Aged Brie"
+  changed: (equal name "Aged Brie") => t
+  changed: (equal name :[a]) => nil
+  changed: (not t) => nil
+  changed: (not nil) => t
+  changed: (and nil :[a]) => nil
+  changed: (if t :[a] :[b]) => :[a]
+  changed: (if nil :[a] :[b]) => :[b]
+  changed: (let ((:[a] :[a])) :[body]) => :[body]
+  changed: (let ((:[a] :[a]) (:[b] :[c])) :[body]) => (let ((:[b] :[c])) :[body])
+Specializing output/1-update-brie.lisp for name "Aged Brie"
+Specializing output/1-update-brie.lisp for name "Aged Brie"
+
+Rename in output/1-update-sulfuras.lisp: "update-item"->"update-sulfuras"
+  changed: (defun update-item :[body]) => (defun update-sulfuras :[body])
+Specializing output/1-update-sulfuras.lisp for name "Sulfuras, Hand of Ragnaros"
+  changed: (equal name "Sulfuras, Hand of Ragnaros") => t
+  changed: (equal name :[a]) => nil
+  changed: (not t) => nil
+  changed: (not nil) => t
+  changed: (and t :[a]) => :[a]
+  changed: (if t :[a] :[b]) => :[a]
+  changed: (if nil :[a] :[b]) => :[b]
+  changed: (if :[cond] :[a] :[a]) => :[a]
+  changed: (let ((:[a] :[a])) :[body]) => :[body]
+  changed: (let ((:[a] :[a]) (:[b] :[c])) :[body]) => (let ((:[b] :[c])) :[body])
+Specializing output/1-update-sulfuras.lisp for name "Sulfuras, Hand of Ragnaros"
+  changed: (if t :[a] :[b]) => :[a]
+  changed: (if :[cond] :[a] :[a]) => :[a]
+  changed: (let ((:[a] :[a])) :[body]) => :[body]
+Specializing output/1-update-sulfuras.lisp for name "Sulfuras, Hand of Ragnaros"
+  changed: (let ((:[a] :[a])) :[body]) => :[body]
+
+Rename in output/1-update-passes.lisp: "update-item"->"update-passes"
+  changed: (defun update-item :[body]) => (defun update-passes :[body])
+Specializing output/1-update-passes.lisp for name "Backstage passes to a TAFKAL80ETC concert"
+  changed: (equal name "Backstage passes to a TAFKAL80ETC concert") => t
+  changed: (equal name :[a]) => nil
+  changed: (not t) => nil
+  changed: (not nil) => t
+  changed: (and :[a] nil) => nil
+  changed: (if t :[a] :[b]) => :[a]
+  changed: (if nil :[a] :[b]) => :[b]
+  changed: (let ((:[a] :[a])) :[body]) => :[body]
+Specializing output/1-update-passes.lisp for name "Backstage passes to a TAFKAL80ETC concert"
+Specializing output/1-update-passes.lisp for name "Backstage passes to a TAFKAL80ETC concert"
+
+; Refactored code
+(defun update-item (name quality sell-in)
+    (let ((quality
+        (if (and (not (equal name "Aged Brie"))
+               (not (equal name "Backstage passes to a TAFKAL80ETC concert")))
+          (if (> quality 0)
+              (if (not (equal name "Sulfuras, Hand of Ragnaros"))
+                  (- quality 1)
+                  quality)
+               quality)
+           quality)))
+        (let ((quality
+                    (if (equal name "Backstage passes to a TAFKAL80ETC concert")
+                        (if (< sell-in 11)
+                            (if (< sell-in 6)
+                                (if (< quality 50)
+                                    (+ quality 2)
+                                    quality)
+                                (if (< quality 50)
+                                    (+ quality 1)
+                                    quality))
+                            quality)
+                        quality))
+               
+                (sell-in (if (not (equal name "Sulfuras, Hand of Ragnaros"))
+                    (- sell-in 1)
+                    sell-in)))
+            (let ((quality
+                (if (< sell-in 0)
+                    (if (not (equal name "Aged Brie"))
+                        (if (not (equal name "Backstage passes to a TAFKAL80ETC concert"))
+                            (if (> quality 0)
+                                (if (not (equal name "Sulfuras, Hand of Ragnaros"))
+                                    (- quality 1)
+                                    quality)
+                                quality)
+                            0)
+                        (if (< quality 50)
+                            (+ quality 1)
+                            quality))
+                    quality)))
+                (list name quality sell-in)))))
+(defun update-brie (name quality sell-in)
+    (let ((sell-in (- sell-in 1))) (let ((quality
+                (if (< sell-in 0)
+                    (if (< quality 50)
+                            (+ quality 1)
+                            quality)
+                    quality)))
+                (list name quality sell-in))))
+(defun update-normal (name quality sell-in)
+    (let ((quality
+        (if (> quality 0)
+              (- quality 1)
+               quality)))
+        (let ((sell-in (- sell-in 1))) (let ((quality
+                (if (< sell-in 0)
+                    (if (> quality 0)
+                                (- quality 1)
+                                quality)
+                    quality)))
+                (list name quality sell-in)))))
+(defun update-passes (name quality sell-in)
+    (let ((quality
+                    (if (< sell-in 11)
+                            (if (< sell-in 6)
+                                (if (< quality 50)
+                                    (+ quality 2)
+                                    quality)
+                                (if (< quality 50)
+                                    (+ quality 1)
+                                    quality))
+                            quality))
+               
+                (sell-in (- sell-in 1)))
+            (let ((quality
+                (if (< sell-in 0)
+                    0
+                    quality)))
+                (list name quality sell-in))))
+(defun update-sulfuras (name quality sell-in)
+    (list name quality sell-in))
+(defun  update-item-refactor (name quality sell-in)
+    (cond
+        ((equal name "Sulfuras, Hand of Ragnaros") (update-sulfuras name quality sell-in))
+        ((equal name "Aged Brie") (update-brie name quality sell-in))
+        ((equal name "Backstage passes to a TAFKAL80ETC concert") (update-passes name quality sell-in))
+        (t (update-normal name quality sell-in))))
+
+(defthm refactor-eq (equal (update-item a b c) (update-item-refactor a b c)))
+
+Verifying with ACL2...
+This is SBCL 2.4.7, an implementation of ANSI Common Lisp.
+More information about SBCL is available at <http://www.sbcl.org/>.
+
+SBCL is free software, provided as is, with absolutely no warranty.
+It is mostly in the public domain; some portions are provided under
+BSD-style licenses.  See the CREDITS and COPYING files in the
+distribution for more information.
+
+ ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ + ACL2 Version 8.5+ (a development snapshot based on ACL2 Version 8.5) +
+ +   built August 22, 2024  21:15:34.                                   +
+ +   (Note from the environment when this executable was saved:         +
+ +    CS2800 Fall 2024)                                                 +
+ + Copyright (C) 2024, Regents of the University of Texas.              +
+ + ACL2 comes with ABSOLUTELY NO WARRANTY.  This is free software and   +
+ + you are welcome to redistribute it under certain conditions.  For    +
+ + details, see the LICENSE file distributed with ACL2.                 +
+ ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Project-dir-alist:
+((:SYSTEM . "/opt/homebrew/Cellar/acl2s/0.1.13/opt/acl2s/acl2/books/")).
+Type :help for help.
+Type (quit) to quit completely out of ACL2.
+
+ACL2 !>
+Since UPDATE-ITEM is non-recursive, its admission is trivial.  We observe
+that the type of UPDATE-ITEM is described by the theorem 
+(AND (CONSP (UPDATE-ITEM NAME QUALITY SELL-IN))
+     (TRUE-LISTP (UPDATE-ITEM NAME QUALITY SELL-IN))).
+We used primitive type reasoning.
+
+Summary
+Form:  ( DEFUN UPDATE-ITEM ...)
+Rules: ((:FAKE-RUNE-FOR-TYPE-SET NIL))
+Time:  0.00 seconds (prove: 0.00, print: 0.00, other: 0.00)
+ UPDATE-ITEM
+ACL2 !>
+Since UPDATE-BRIE is non-recursive, its admission is trivial.  We observe
+that the type of UPDATE-BRIE is described by the theorem 
+(AND (CONSP (UPDATE-BRIE NAME QUALITY SELL-IN))
+     (TRUE-LISTP (UPDATE-BRIE NAME QUALITY SELL-IN))).
+We used primitive type reasoning.
+
+Summary
+Form:  ( DEFUN UPDATE-BRIE ...)
+Rules: ((:FAKE-RUNE-FOR-TYPE-SET NIL))
+Time:  0.00 seconds (prove: 0.00, print: 0.00, other: 0.00)
+ UPDATE-BRIE
+ACL2 !>
+Since UPDATE-NORMAL is non-recursive, its admission is trivial.  We
+observe that the type of UPDATE-NORMAL is described by the theorem
+(AND (CONSP (UPDATE-NORMAL NAME QUALITY SELL-IN))
+     (TRUE-LISTP (UPDATE-NORMAL NAME QUALITY SELL-IN))).
+We used primitive type reasoning.
+
+Summary
+Form:  ( DEFUN UPDATE-NORMAL ...)
+Rules: ((:FAKE-RUNE-FOR-TYPE-SET NIL))
+Time:  0.00 seconds (prove: 0.00, print: 0.00, other: 0.00)
+ UPDATE-NORMAL
+ACL2 !>
+Since UPDATE-PASSES is non-recursive, its admission is trivial.  We
+observe that the type of UPDATE-PASSES is described by the theorem
+(AND (CONSP (UPDATE-PASSES NAME QUALITY SELL-IN))
+     (TRUE-LISTP (UPDATE-PASSES NAME QUALITY SELL-IN))).
+We used primitive type reasoning.
+
+Summary
+Form:  ( DEFUN UPDATE-PASSES ...)
+Rules: ((:FAKE-RUNE-FOR-TYPE-SET NIL))
+Time:  0.00 seconds (prove: 0.00, print: 0.00, other: 0.00)
+ UPDATE-PASSES
+ACL2 !>
+Since UPDATE-SULFURAS is non-recursive, its admission is trivial. 
+We observe that the type of UPDATE-SULFURAS is described by the theorem
+(AND (CONSP (UPDATE-SULFURAS NAME QUALITY SELL-IN))
+     (TRUE-LISTP (UPDATE-SULFURAS NAME QUALITY SELL-IN))).
+We used primitive type reasoning.
+
+Summary
+Form:  ( DEFUN UPDATE-SULFURAS ...)
+Rules: ((:FAKE-RUNE-FOR-TYPE-SET NIL))
+Time:  0.00 seconds (prove: 0.00, print: 0.00, other: 0.00)
+ UPDATE-SULFURAS
+ACL2 !>
+Since UPDATE-ITEM-REFACTOR is non-recursive, its admission is trivial.
+We observe that the type of UPDATE-ITEM-REFACTOR is described by the
+theorem 
+(AND (CONSP (UPDATE-ITEM-REFACTOR NAME QUALITY SELL-IN))
+     (TRUE-LISTP (UPDATE-ITEM-REFACTOR NAME QUALITY SELL-IN))).
+We used the :type-prescription rules UPDATE-BRIE, UPDATE-NORMAL, 
+UPDATE-PASSES and UPDATE-SULFURAS.
+
+Summary
+Form:  ( DEFUN UPDATE-ITEM-REFACTOR ...)
+Rules: ((:TYPE-PRESCRIPTION UPDATE-BRIE)
+        (:TYPE-PRESCRIPTION UPDATE-NORMAL)
+        (:TYPE-PRESCRIPTION UPDATE-PASSES)
+        (:TYPE-PRESCRIPTION UPDATE-SULFURAS))
+Time:  0.00 seconds (prove: 0.00, print: 0.00, other: 0.00)
+ UPDATE-ITEM-REFACTOR
+ACL2 !>
+ACL2 Warning [Non-rec] in ( DEFTHM REFACTOR-EQ ...):  A :REWRITE rule
+generated from REFACTOR-EQ will be triggered only by terms containing
+the function symbol UPDATE-ITEM, which has a non-recursive definition.
+Unless this definition is disabled, this rule is unlikely ever to be
+used.
+
+
+Splitter note (see :DOC splitter) for Goal (9 subgoals).
+  if-intro: ((:DEFINITION UPDATE-BRIE)
+             (:DEFINITION UPDATE-ITEM)
+             (:DEFINITION UPDATE-ITEM-REFACTOR)
+             (:DEFINITION UPDATE-NORMAL)
+             (:DEFINITION UPDATE-PASSES))
+
+Subgoal 9
+Subgoal 9'
+Subgoal 8
+Subgoal 8'
+Subgoal 7
+Subgoal 7'
+Subgoal 6
+Subgoal 6'
+Subgoal 5
+Subgoal 5'
+Subgoal 4
+Subgoal 4'
+Subgoal 3
+Subgoal 3'
+Subgoal 2
+Subgoal 2'
+Subgoal 1
+Subgoal 1'
+
+Q.E.D.
+
+Summary
+Form:  ( DEFTHM REFACTOR-EQ ...)
+Rules: ((:DEFINITION NOT)
+        (:DEFINITION UPDATE-BRIE)
+        (:DEFINITION UPDATE-ITEM)
+        (:DEFINITION UPDATE-ITEM-REFACTOR)
+        (:DEFINITION UPDATE-NORMAL)
+        (:DEFINITION UPDATE-PASSES)
+        (:DEFINITION UPDATE-SULFURAS)
+        (:EXECUTABLE-COUNTERPART EQUAL)
+        (:FAKE-RUNE-FOR-TYPE-SET NIL)
+        (:REWRITE COMMUTATIVITY-OF-+))
+Splitter rules (see :DOC splitter):
+  if-intro: ((:DEFINITION UPDATE-BRIE)
+             (:DEFINITION UPDATE-ITEM)
+             (:DEFINITION UPDATE-ITEM-REFACTOR)
+             (:DEFINITION UPDATE-NORMAL)
+             (:DEFINITION UPDATE-PASSES))
+Warnings:  Non-rec
+Time:  0.00 seconds (prove: 0.00, print: 0.00, other: 0.00)
+Prover steps counted:  2283
+ REFACTOR-EQ
+ACL2 !>Bye.
+Success!

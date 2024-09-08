@@ -9,12 +9,15 @@ This collection is inspired by [Provable Refactorings](https://github.com/digdee
 * Formal Specification driven
   * Dafny - [Gilded Rose](https://github.com/raymyers/gilded-rose-dafny), [Video](https://youtu.be/XNIdKXQ56o4)
   * Dafny - [Proving the correctness of AWS authorization](https://www.youtube.com/watch?v=oshxAJGrwMU)
+* Proving equivelance between original and refactored program
+  * ACL2 + Comby - [code](./examples/acl2/comby-script)
+  * ACL2 + simplify-defun - [code](./examples/acl2/simplify-defun)
 * Symbolic Execution
   * C + Klee - [Gilded Rose](https://github.com/raymyers/gilded-rose-c-symbolic-execution), [Video](https://youtu.be/_7RXQE-pCMo)
 * Functional implementation as spec
   * Dafny - Linked Lists [Video 1]([https://youtu.be/dUoyPxSfKHU](https://youtu.be/zDu4SA5T4SI)), [Video 2](https://youtu.be/dUoyPxSfKHU) 
-  * Coq + Gallina
-* Proving program equivalence of an embedded language
+  * Coq / Gallina
+* Proving equivalence on an embedded language
   * Coq + Imp - [Programming Language Foundations](https://softwarefoundations.cis.upenn.edu/plf-current/Equiv.html)
 * Proving equivelance of a program transformation
   * [CompCert](https://compcert.org/compcert-C.html) C Compiler written in Coq, extracted to OCaml
