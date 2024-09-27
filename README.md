@@ -12,6 +12,7 @@ This collection is inspired by [Provable Refactorings](https://github.com/digdee
 * Proving equivelance between original and refactored program
   * ACL2 + Comby - [code](./examples/acl2/comby-script)
   * ACL2 + simplify-defun - [code](./examples/acl2/simplify-defun)
+  * Lean [code](./examples/lean)
 * Symbolic Execution
   * C + Klee - [Gilded Rose](https://github.com/raymyers/gilded-rose-c-symbolic-execution), [Video](https://youtu.be/_7RXQE-pCMo)
 * Functional implementation as spec
